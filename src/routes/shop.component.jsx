@@ -1,8 +1,9 @@
-
 const Shop = () => {
-    return(
-        <h1>I am the shop page</h1>
-    )
-}
+  return (
+    <div>
+      <h1>I am the shop page</h1>
+    </div>
+  );
+};
 
-export default Shop
+export default Shop;
