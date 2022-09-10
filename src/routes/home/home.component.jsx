@@ -1,4 +1,4 @@
-import Category from '../components/category.component'
+import Category from '../../components/category.component'
 const Home = () => {
   return (
     <>
