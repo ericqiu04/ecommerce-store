@@ -1,5 +1,5 @@
 import {initializeApp} from 'firebase/app';
-import {getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
+import {getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider} from 'firebase/auth'
 import {getFirestore, doc, getDoc, setDoc} from 'firebase/firestore'
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,15 +14,23 @@ const firebaseConfig = {
   // Initialize Firebase
   const firebaseApp = initializeApp(firebaseConfig);
  
-  const provider = new GoogleAuthProvider();
-  provider.setCustomParameters({
+  const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
+
+  facebookProvider.setCustomParameters({
+    prompt: "select_account"
+  })
+  googleProvider.setCustomParameters({
     prompt: "select_account"
   }) 
 
   export const auth = getAuth();
 
-  export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+  export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
+  export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
+  export const signInWithFacebookPopup = () => signInWithPopup(auth, facebookProvider);
+  export const signInWithFacebookRedirect = () => signInWithPopup(auth, facebookProvider);
   export const db = getFirestore();
 
   export const createUserDocFromAuth = async(userAuth) => {
